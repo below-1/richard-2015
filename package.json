@@ -1,0 +1,29 @@
+{
+  "name": "richard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpx nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.17.0",
+    "dotenv": "^8.2.0",
+    "fastify": "^3.11.0",
+    "fastify-blipp": "^3.0.0",
+    "fastify-cookie": "^5.1.0",
+    "fastify-cors": "^5.2.0",
+    "fastify-multer": "^2.0.2",
+    "fastify-plugin": "^3.0.0",
+    "fastify-session": "^5.2.1",
+    "fastify-static": "^3.4.0",
+    "knex": "^0.21.17",
+    "nunjucks": "^3.2.2",
+    "point-of-view": "^4.12.0",
+    "sqlite3": "^5.0.1"
+  }
+}
