@@ -24,6 +24,17 @@ module.exports = async (fastify) => {
 	})
 
 	fastify.route({
+		method: 'GET',
+		url: '/logout',
+		handler: async (request, reply) => {
+			request.destroySession(err => {
+				console.log(err);
+				reply.redirect('/');
+			})
+		}
+	})
+
+	fastify.route({
 		method: 'POST',
 		url: '/login',
 		preHandler: upload.none(),
@@ -31,6 +42,8 @@ module.exports = async (fastify) => {
 			delete request.session.auth_err;
 			const { username, password } = request.body;
 			const user = await db('app_user').where('username', '=', username).first();
+			console.log('user');
+			console.log(user);
 			if (!user) {
 				request.session.auth_err = {
 					type: 'USER_NOT_FOUND',

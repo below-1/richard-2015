@@ -10,6 +10,28 @@ module.exports = async (fastify) => {
 	
 	fastify.route({
 		method: 'GET',
+		url: '/overview',
+		handler: async (request, reply) => {
+			let items = await db
+				.select([
+					'd.id',
+					'd.nama',
+					db.raw('count(kt.id) as total')
+				])
+				.from('desa as d')
+				.leftJoin('kelompok_tani as kt', 'kt.id_desa', 'd.id')
+				.groupBy('d.id');
+			const labels = JSON.stringify(items.map(it => it.nama));
+			const data = JSON.stringify(items.map(it => it.total));
+			reply.view('app/overview', {
+				labels,
+				data
+			});
+		}
+	})
+
+	fastify.route({
+		method: 'GET',
 		url: '/',
 		handler: async (request, reply) => {
 			let items = await db
@@ -38,6 +60,7 @@ module.exports = async (fastify) => {
 			});
 		}
 	})
+
 
 	fastify.route({
 		method: 'GET',

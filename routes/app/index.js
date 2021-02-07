@@ -1,5 +1,13 @@
 module.exports = async (fastify) => {
 
+	// fastify
+ //    .addHook('onRequest', async (request, reply) => {
+ //      const user = request.session.user;
+ //      if (!user) {
+ //        reply.redirect('/auth/login');
+ //      }
+ //    })
+
 	fastify.get('/', (request, reply) => {
 		reply.view('app/home')
 	})
